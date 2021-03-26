@@ -1,0 +1,31 @@
+<meta name="dj4e" content="bd78d16ede6ce1fbdfc2a648c943af72"> 
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+  <h1>Horses List</h1>
+  {% if horse_list %}
+  <ul>
+    {% for horse in horse_list %}
+      <li>
+          {{ horse.nickname }} ({{ horse.breed }})
+          (<a href="{% url 'horses:horse_update' horse.id %}">Update</a> |
+          <a href="{% url 'horses:horse_delete' horse.id %}">Delete</a>) <br/>
+          {{ horse.weight }} ({{ horse.foods }})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no horses in the library.</p>
+  {% endif %}
+  <p>
+    {% if breed_count > 0 %}
+      <a href="{% url 'horses:horse_create' %}">Add a horse</a>
+    {% else %}
+      Please add a breed before you add a horse.
+    {% endif %}
+  </p>
+  <p>
+  <a href="{% url 'horses:breed_list' %}">View breeds</a> ({{ breed_count }}) |
+    <a href="{% url 'horses:breed_create' %}">Add a breed</a>
+  </p>
+{% endblock %}

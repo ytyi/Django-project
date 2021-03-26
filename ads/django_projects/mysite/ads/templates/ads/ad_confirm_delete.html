@@ -1,0 +1,13 @@
+
+<meta name="dj4e" content="bd78d16ede6ce1fbdfc2a648c943af72">
+{% extends "base_menu.html" %}
+{% block content %}
+<h1>Delete Article</h1>
+
+<p>Are you sure you want to delete the article: {{ article }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, delete.">
+</form>
+{% endblock %}
